@@ -29,11 +29,5 @@ script:
   - echo Check if the library described by the podspec can be built
   - pod lib lint --allow-warnings
 
-  - echo Build iOSDebugKit
-  - pod install
-  - xcodebuild build -workspace ZDDebugKit.xcworkspace -scheme Demo -destination 'platform=iOS Simulator,name=iPhone 11 Pro' -configuration Debug | xcpretty -c
-
-  - echo Clean DerivedData
-  - rm -rf ~/Library/Developer/Xcode/DerivedData/
-  - mkdir DerivedData
+  - echo lint iOSDebugKit OK
 
