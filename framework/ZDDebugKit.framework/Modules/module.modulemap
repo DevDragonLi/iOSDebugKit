@@ -1,0 +1,6 @@
+framework module ZDDebugKit {
+  umbrella header "ZDDebugKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
