@@ -8,7 +8,7 @@
 
 > **完全解耦**，菜单和点击行为为宿主工程处理，组件底层只提供响应事件和一级菜单展示的界面维护。
 
-- **`一级主菜单`**为宿主工程完全自定义并列表展示
+- **一级主菜单**为宿主工程完全自定义并列表展示
 
 	- 工程不同业务方向，拆分不同item可选菜单（账户，视频，分享等）
 
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_END
 @implementation TestService
 
 /// 也可以AppDelegate入口设置
-
+/// Title 参数应该为小写，属于已知✍️问题，暂不调整
 + (void)load {
      [ZDDEBUGMENU showDebugMenuWithServiceClass:self Title:@"Debug菜单中心" autoCloseEdge:YES];   
 }
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_END
 
 /// 事件派分 接收处理
 + (void)debugActionWithIndexPath:(NSIndexPath *)indexPath
-                   completeBlock:(void (^)(void))completeBlock {
+                   completeDissBlock:(void (^)(void))completeDissBlock {
         NSInteger selectRow = indexPath.row;
     // 对应不同下标，处理对应菜单事件即可
     	// 扩展业务，也为此处扩展
