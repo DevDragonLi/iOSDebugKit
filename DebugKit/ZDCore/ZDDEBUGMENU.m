@@ -78,7 +78,7 @@ UIKIT_STATIC_INLINE ZDEdgeRetractConfig ZDEdgeOffsetConfigMake(CGPoint edgeRetra
 
 @property (nonatomic,copy) void (^clickBlock)(void);
 
-@property (nonatomic,weak) Class serviceClass;
+@property (nonatomic,copy) NSString * serviceClassString;
 
 + (instancetype)shareManager;
 
@@ -91,7 +91,7 @@ UIKIT_STATIC_INLINE ZDEdgeRetractConfig ZDEdgeOffsetConfigMake(CGPoint edgeRetra
                                 Title:(NSString  * _Nullable )title
                         autoCloseEdge:(BOOL)autoCloseEdge {
     if (serviceClass) {
-        [ZDDEBUGMENU shareManager].serviceClass = serviceClass;
+        [ZDDEBUGMENU shareManager].serviceClassString = NSStringFromClass([serviceClass class]);
     } else {
         [NSException exceptionWithName:@"ZDDeBugKitServiceClassString" reason:@"为传入有效的参数" userInfo:nil];
     }
@@ -103,7 +103,8 @@ UIKIT_STATIC_INLINE ZDEdgeRetractConfig ZDEdgeOffsetConfigMake(CGPoint edgeRetra
 }
 
 + (Class <ZDDebugKitProtocol> _Nonnull )debugProtocolServiceClass {
-    return [ZDDEBUGMENU shareManager].serviceClass;
+    Class <ZDDebugKitProtocol> serviceClass = NSClassFromString([ZDDEBUGMENU shareManager].serviceClassString);
+    return serviceClass;
 }
 
 + (instancetype)shareManager {
